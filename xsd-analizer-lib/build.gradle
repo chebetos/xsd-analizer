@@ -1,0 +1,3 @@
+dependencies {
+	compile group: 'com.sun.xsom', name: 'xsom', version: '20110809'
+} 	
