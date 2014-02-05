@@ -4,3 +4,11 @@
 *.jar
 *.war
 *.ear
+.gradle
+
+# Builds
+build/*
+xsd-analizer-gui/bin/
+xsd-analizer-lib/bin/
+xsd-analizer-gui/build/
+xsd-analizer-lib/build/
