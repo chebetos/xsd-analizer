@@ -1,6 +1,7 @@
 package ve.web.chebetos.xsd_analizer.lib;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -25,6 +26,9 @@ public class SchemaLoader {
 	public XSSchemaSet parse(File file) {
 		XSOMParser parser = new XSOMParser();
 		try {
+			if (!file.exists()) {
+				throw new FileNotFoundException(file.getName() + " does not exists");
+			}
 			parseFile(file, parser);
 			return parser.getResult();
 		} catch (SAXException e) {
