@@ -1,3 +1,4 @@
 dependencies {
 	compile group: 'com.sun.xsom', name: 'xsom', version: '20110809'
+	compile group: 'org.apache.ws.commons.schema', name: 'XmlSchema', version: '1.4.7'
 } 	
