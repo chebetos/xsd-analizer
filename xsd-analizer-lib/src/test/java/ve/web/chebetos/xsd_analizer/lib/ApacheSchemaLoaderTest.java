@@ -1,15 +1,12 @@
 package ve.web.chebetos.xsd_analizer.lib;
 
 import java.io.File;
-import java.util.Iterator;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.apache.ws.commons.schema.XmlSchema;
+import org.apache.ws.commons.schema.XmlSchemaCollection;
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.sun.xml.xsom.XSElementDecl;
-import com.sun.xml.xsom.XSSchemaSet;
 
 public class ApacheSchemaLoaderTest {
 	private static Logger logger =
@@ -17,27 +14,12 @@ public class ApacheSchemaLoaderTest {
 	
     @Test
     public void canParseAFile() {
-    	final String schemaTestFile = "schema-test.xsd";
-    	XSSchemaSet schemaSet = SchemaLoader.getInstance().parse(new File(schemaTestFile));
-    	Assert.assertNotNull(schemaSet);
-    }
-    
-    @Test
-    public void canParseAFolder() {
     	final String schemaTestFile = "./src";
-    	XSSchemaSet schemaSet = SchemaLoader.getInstance().parse(new File(schemaTestFile));
-    	Assert.assertNotNull(schemaSet);
-    }
-    
-    @Test
-    public void listElements() {
-    	final String schemaTestFile = "schema-test.xsd";
-    	XSSchemaSet schemaSet = SchemaLoader.getInstance().parse(new File(schemaTestFile));
-    	Iterator<XSElementDecl> itElements = schemaSet.iterateElementDecls();
-    	while (itElements.hasNext()) {
-    		XSElementDecl element = itElements.next();
-			logger.log(Level.INFO, "elements: {0}", element);
-		}
+    	XmlSchemaCollection schemaCollection = ApacheSchemaLoader.getInstance().parse(new File(schemaTestFile));
+    	Assert.assertNotNull(schemaCollection);
+    	
+    	XmlSchema[] schemas =  schemaCollection.getXmlSchemas();
+    	Assert.assertTrue(schemas.length > 0);
     }
     
     //leer un esquema (comprobar que trae un esquema y probar que pasa si tiene import)
