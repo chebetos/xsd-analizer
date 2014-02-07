@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -12,7 +13,7 @@ import javax.xml.transform.stream.StreamSource;
 
 import org.apache.ws.commons.schema.XmlSchema;
 import org.apache.ws.commons.schema.XmlSchemaCollection;
-import org.xml.sax.SAXException;
+import org.apache.ws.commons.schema.XmlSchemaObjectTable;
 
 public class ApacheSchemaLoader {
 
@@ -53,6 +54,11 @@ public class ApacheSchemaLoader {
 			logger.log(Level.INFO, "parsing {0}", file);
 			FileInputStream is = new FileInputStream(file);
 			XmlSchema schema = schemaCol.read(new StreamSource(is), null);
+			XmlSchemaObjectTable elements = schema.getElements();
+			Iterator<?> it = elements.getNames();
+			while (it.hasNext()) {
+				logger.log(Level.INFO, "elements {0}", it.next());
+			}
 		}
 	}
 }
