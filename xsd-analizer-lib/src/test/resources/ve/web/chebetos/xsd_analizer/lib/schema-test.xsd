@@ -4,8 +4,31 @@
 
     <element name="basicElement" type="string"></element>
 
-    <element name="simpleTypeElement" type="string"></element>
+    <element name="simpleTypeElement" type="tns:aSimpleType"></element>
 
-    <element name="complexTypeElement" type="string"></element>
+    <element name="complexTypeElement" type="tns:aComplexType"></element>
 
+
+    <complexType name="aComplexType">
+    	<sequence>
+    		<element name="stringElement" type="string" maxOccurs="1"
+    			minOccurs="1">
+    		</element>
+    		<element name="aSimpleTypeElement" type="anySimpleType"
+    			maxOccurs="unbounded" minOccurs="0">
+    		</element>
+    		<element name="intElement" type="integer"></element>
+    	</sequence>
+    </complexType>
+    
+    <simpleType name="aSimpleType">
+    	<restriction base="string">
+    		<minLength value="10"></minLength>
+    		<maxLength value="30"></maxLength>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="orphanType">
+    	<restriction base="string"></restriction>
+    </simpleType>
 </schema>
